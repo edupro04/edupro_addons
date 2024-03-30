@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^sgsp0%&v&kkygw6^dv_62dx&c%1p*^lwx@v_^*%#^b#fnhlr5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'corsheaders',        
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,4 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
