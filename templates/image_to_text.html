@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Upload images - Edkuest{% endblock %}
+
+{% block content %}
+
+  <style>
+    #your-para {
+        background: #f1f1f1;
+    }
+
+    .preview-images-zone {
+    width: 100%;
+    min-height: 180px;
+    /* display: flex; */
+    padding: 5px 5px 0px 5px;
+    position: relative;
+    overflow:auto;
+}
+
+.preview-images-zone > .preview-image {
+    height: 90px;
+    width: 90px;
+    position: relative;
+    margin-right: 5px;
+    float: left;
+    margin-bottom: 5px;
+}
+.preview-images-zone > .preview-image > .image-zone {
+    width: 100%;
+    height: 100%;
+}
+.preview-images-zone > .preview-image > .image-zone > img {
+    width: 100%;
+    height: 100%;
+}
+.preview-images-zone > .preview-image > .tools-edit-image {
+    position: absolute;
+    z-index: 100;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    display: none;
+}
+.preview-images-zone > .preview-image > .image-cancel {
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+    display: none;
+    z-index: 100;
+}
+.preview-image:hover > .image-zone {
+    cursor: move;
+    opacity: .5;
+}
+.preview-image:hover > .tools-edit-image,
+.preview-image:hover > .image-cancel {
+    display: block;
+}
+.ui-sortable-helper {
+    width: 90px !important;
+    height: 90px !important;
+}
+
+.container {
+    padding-top: 50px;
+}
+  </style>
+
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <div class="row">
+
+
+<div class="col-md-6">
+    <h4 style="text-align:center">Upload Images</h4>
+<form id="image-upload-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <fieldset class="form-group">
+            <a href="javascript:void(0)" onclick="$('#pro-image').click()">Select Images</a>
+            <input type="file" id="pro-image" name="pro-image" class="form-control" multiple>
+        </fieldset>
+        <div class="preview-images-zone"></div>
+    </div>
+    <button type="button" class="btn btn-primary generateQuest">Generate Questions
+        <img src="{% static 'ico_set/icons8-ai-64.png' %}" style="height: 32px; width: 32px">
+    </button>
+</form>
+
+</div>
+
+
+        <div class="col-md-6">
+            <h4 style="text-align:center">Here are the questions</h4>
+        </div>
+  </div>
+<script>
+$('.generateQuest').on('click', function() {
+    var formData = new FormData($('#image-upload-form')[0]);
+
+    $.ajax({
+        url: 'https://edkuest-cee1cd83b335.herokuapp.com/tesseract_ocr/extract_text_from_image/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        async:true,
+        crossDomain:true,
+        headers: {
+            'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]').val()
+        },
+        success: function(response) {
+            console.log('Extracted Text:', response.extracted_text);
+            // Do something with the extracted text, like displaying it on the page
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+});
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}
