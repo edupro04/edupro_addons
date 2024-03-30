@@ -1,9 +1,91 @@
-{% extends 'base.html' %}
-{% load static %}
+<!DOCTYPE html>
 
-{% block title %}Upload images - Edkuest{% endblock %}
 
-{% block content %}
+<html lang="en">
+<head>
+            
+    <link rel="icon" type="image/x-icon" href="/static/ico_set/favicon_hq.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/frontpage/custom.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        
+  <style>
+
+      body {
+font-family: 'Open Sans', sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+
+        padding-top: 56px; /* Adjust this value based on your navbar height */
+
+      }
+
+    .container {
+        margin-top: 50px;
+    }
+    .opaque-navbar {
+      background-color: #232F3E; /* Change this color to your desired opaque color */
+    }
+
+    .opaque-navbar .navbar-nav .nav-link {
+      color: white !important; /* Font color for the links in the opaque navbar */
+    }
+
+    .logo {
+      display: none !important; /* Hide the logo by default */
+      font-family: "Pacifico", cursive;
+      color: white !important;
+      font-size: 1.5rem;
+          font-weight: 400;
+              transition: visibility 0.3s ease-in-out;
+
+    }
+
+    .opaque-navbar .logo {
+      display: block !important; /* Show the logo when the navbar becomes opaque */
+
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top opaque-navbar">
+  <a class="navbar-brand logo" href="/">Edkuest</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+
+   <ul class="navbar-nav ml-auto">
+       <li class="nav-item"><a class="nav-link" href="/pricing/">Pricing</a></li>
+        
+
+       
+       <li class="nav-item"><a class="nav-link" href="/accounts/signup/" data-selector="nav a, a.edit" style="">Sign Up</a></li>
+       <li class="nav-item"><a class="nav-link" href="/accounts/login/?next=/p2q/image_to_text/" data-selector="nav a, a.edit" style="">Log In</a></li>
+       
+    </ul>
+
+
+  </div>
+</nav>
+
+    <div class="container">
+        
 
   <style>
     #your-para {
@@ -84,7 +166,7 @@
 <div class="col-md-6">
     <h4 style="text-align:center">Upload Images</h4>
 <form id="image-upload-form" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="f8sacDsEqsGBKzGvKRQTBfYWMJ7qM4EIQuDIVRj92NncO2vK4NECINi071aLnvkI">
     <div class="container">
         <fieldset class="form-group">
             <a href="javascript:void(0)" onclick="$('#pro-image').click()">Select Images</a>
@@ -93,7 +175,7 @@
         <div class="preview-images-zone"></div>
     </div>
     <button type="button" class="btn btn-primary generateQuest">Generate Questions
-        <img src="{% static 'ico_set/icons8-ai-64.png' %}" style="height: 32px; width: 32px">
+        <img src="/static/ico_set/icons8-ai-64.png" style="height: 32px; width: 32px">
     </button>
 </form>
 
@@ -130,4 +212,8 @@ $('.generateQuest').on('click', function() {
 });
 </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-{% endblock %}
+
+    </div>
+
+</body>
+</html>
