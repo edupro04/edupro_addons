@@ -8,6 +8,11 @@ import pytesseract
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
+
+def index(request):
+    return render(request, 'index.html')
+    
+    
 def extract_text_from_image(request):
     print('hello')
     print(request.FILES.get('pro-image'))
