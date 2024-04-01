@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
 import os
@@ -16,7 +17,8 @@ def index(request):
 def image_to_text(request):
     return render(request, 'image_to_text.html',)
     
-    
+
+@csrf_exempt     
 def extract_text_from_image(request):
     print('hello')
     print(request.FILES.get('pro-image'))
