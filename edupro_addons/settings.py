@@ -126,11 +126,6 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:8000",
-    "http://192.168.230.128:8000",
-    "http://106.77.128.169",
-]
 
 CORS_ALLOW_HEADERS = [
         'Access-Control-Allow-Origin',
