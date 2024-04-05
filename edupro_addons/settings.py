@@ -128,6 +128,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
+    "https://edkuest-cee1cd83b335.herokuapp.com",
+    
+    "edkuest.com",
+    "www.edkuest.com",
+    "https://www.edkuest.com",
+    "192.168.230.128",
+    "172.31.31.60",
+    "edkuest-env.eba-mqwvchmp.ap-south-1.elasticbeanstalk.com",
+    "www.edkuest-env.eba-mqwvchmp.ap-south-1.elasticbeanstalk.com",
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -135,6 +144,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.230.128:8000",
     "http://106.77.128.169",
     "https://edkuest-cee1cd83b335.herokuapp.com",
+    
+    "edkuest.com",
+    "www.edkuest.com",
+    "https://www.edkuest.com",
+    "192.168.230.128",
+    "172.31.31.60",
+    "edkuest-env.eba-mqwvchmp.ap-south-1.elasticbeanstalk.com",
+    "www.edkuest-env.eba-mqwvchmp.ap-south-1.elasticbeanstalk.com",
 ]
 
 CORS_ALLOW_HEADERS = [
