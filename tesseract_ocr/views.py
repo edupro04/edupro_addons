@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
 import os
+import base64
+import io
 from PIL import Image
 import pytesseract
 
