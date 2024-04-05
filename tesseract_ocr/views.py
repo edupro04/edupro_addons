@@ -21,24 +21,13 @@ def image_to_text(request):
 @csrf_exempt     
 def extract_text_from_image(request):
     print('hello')
-    print(request.FILES.get('pro-image'))
-    if request.method == 'POST' and request.FILES.get('pro-image'):
-        uploaded_image = request.FILES['pro-image']
-
-        # Save the uploaded image to a temporary location
-        temp_image_path = os.path.join(settings.MEDIA_ROOT, 'temp_image.png')
-        with open(temp_image_path, 'wb') as temp_image_file:
-            for chunk in uploaded_image.chunks():
-                temp_image_file.write(chunk)
-
-        # Open the saved image using PIL (Python Imaging Library)
-        image = Image.open(temp_image_path)
-
-        # Perform OCR on the image using pytesseract
+    print(request.POST.get('merged-image', ''))
+    if request.method == 'POST' and request.POST.get('merged-image', ''):
+        print('inside if')
+        image_data = request.POST.get('merged-image').split(',')[1]  # Get base64 string after comma
+        img_bytes = base64.b64decode(image_data)
+        image = Image.open(io.BytesIO(img_bytes))
         extracted_text = pytesseract.image_to_string(image)
-
-        # Delete the temporary image file
-        os.remove(temp_image_path)
 
         return JsonResponse({'extracted_text': extracted_text})
 
